@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~materialize-css/dist/css/materialize.min.css';
+
+body {
+  background-color: #f3f7fa;
+}
+
+.main-logo {
+  display: block;
+  margin: 50px auto;
+}
+
+.tabs .indicator {
+  background-color: #2196f3;
+}
+
+.card {
+  border-radius: 4px;
+}
+
+div.toast {
+  background-color: #2196f3;
+  border-radius: 4px;
+}
+
+.progress {
+  background-color: rgba(#2196f3, 0.3);
+
+  .indeterminate {
+    background-color: #2196f3;
+  }
+}

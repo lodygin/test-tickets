@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Количество пересадок</span>
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" [(ngModel)]="allCheckedFilters" (change)="allCheckHandler()" class="filled-in">
+            <span>Все</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" [(ngModel)]="filterByTransfer.nonTransfer" (change)="checksHandler()" class="filled-in">
+            <span>Без пересадок</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" [(ngModel)]="filterByTransfer.oneTransfer" (change)="checksHandler()" class="filled-in">
+            <span>1 пересадка</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" [(ngModel)]="filterByTransfer.twoTransfer" (change)="checksHandler()" class="filled-in">
+            <span>2 пересадки</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" [(ngModel)]="filterByTransfer.threeTransfer" (change)="checksHandler()" class="filled-in">
+            <span>3 пересадки</span>
+          </label>
+        </li>
+      </ul>
+  </div>
+</div>

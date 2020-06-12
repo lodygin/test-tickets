@@ -1,0 +1,54 @@
+tr {
+  border: none;
+}
+
+th,
+td {
+  padding: 3px 5px 0 0;
+  width: 33.33%;
+}
+
+th {
+  color: #A0B0B9;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+td {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+li {
+  padding: 10px 0;
+
+  &:first-child {
+    padding: 0 0 10px;
+  }
+
+  &:last-child {
+    padding: 10px 0 0;
+  }
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-logo {
+
+  img {
+    width: 110px;
+  }
+}
+
+.card-price {
+  color: #2196F3;
+  font-size: 24px;
+  font-weight: 600;
+}
