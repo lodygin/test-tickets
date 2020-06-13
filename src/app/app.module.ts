@@ -1,13 +1,14 @@
 import {BrowserModule} from '@angular/platform-browser'
 import {NgModule} from '@angular/core'
+import {FormsModule} from '@angular/forms'
+import {InfiniteScrollModule} from 'ngx-infinite-scroll'
 
 import {AppComponent} from './app.component'
 import {FilterComponent} from './filter/filter.component'
 import {DashboardComponent} from './dashboard/dashboard.component'
 import {DashboardItemComponent} from './dashboard/dashboard-item/dashboard-item.component'
-import {FormsModule} from '@angular/forms'
-import {HttpClientModule} from '@angular/common/http';
-import { LoaderComponent } from './shared/components/loader/loader.component'
+import {HttpClientModule} from '@angular/common/http'
+import {LoaderComponent} from './shared/components/loader/loader.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoaderComponent } from './shared/components/loader/loader.component'
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

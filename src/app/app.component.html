@@ -4,17 +4,21 @@
   <div class="container">
     <div class="row">
       <div class="col s4">
-        <app-filter></app-filter>
+        <app-filter (filter)="setFilter($event)"></app-filter>
       </div>
       <div class="col s8">
-        <app-dashboard></app-dashboard>
+        <app-dashboard [tickets]="currTickets"></app-dashboard>
       </div>
     </div>
   </div>
 </div>
 
 <ng-template #loader>
-  <app-loader></app-loader>
+  <div class="container">
+    <div class="row">
+      <app-loader></app-loader>
+    </div>
+  </div>
 </ng-template>
 
 

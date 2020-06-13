@@ -24,7 +24,7 @@ export interface Ticket {
       // Код города (iata)
       destination: string
       // Дата и время вылета обратно
-      date: string
+      date: string | Date
       // Массив кодов (iata) городов с пересадками
       stops: string[]
       // Общее время перелёта в минутах
@@ -40,4 +40,11 @@ export interface TicketsBlock {
 
 export interface SearchId {
   [searchId: string]: string
+}
+
+export interface Filter {
+  nonTransfer: boolean
+  oneTransfer: boolean
+  twoTransfer: boolean
+  threeTransfer: boolean
 }

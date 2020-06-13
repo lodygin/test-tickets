@@ -10,6 +10,8 @@ import {MaterialService} from './material.service'
 })
 export class TicketsService {
 
+  searchId: SearchId
+
   constructor(
     private http: HttpClient
   ) {
@@ -26,7 +28,7 @@ export class TicketsService {
       .pipe(
         retryWhen((errors: Observable<HttpErrorResponse>) => {
           MaterialService.toast('Ошибка установления соединения с базой данных')
-          return (errors).pipe(delay(500))
+          return (errors).pipe(delay(200))
         })
       )
 

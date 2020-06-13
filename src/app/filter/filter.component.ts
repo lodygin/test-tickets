@@ -1,4 +1,5 @@
-import {Component} from '@angular/core'
+import {Component, EventEmitter, Output} from '@angular/core'
+import {Filter} from '../shared/interfaces'
 
 @Component({
   selector: 'app-filter',
@@ -7,32 +8,41 @@ import {Component} from '@angular/core'
 })
 export class FilterComponent {
 
-  allCheckedFilters = false
+  @Output('filter') filter: EventEmitter<Filter> = new EventEmitter<Filter>()
 
-  filterByTransfer = {
-    nonTransfer: false,
-    oneTransfer: false,
-    twoTransfer: false,
-    threeTransfer: false
-  }
+  allCheckedFilter: boolean = true
 
-  constructor() {
+  filterByTransfer: Filter = {
+    nonTransfer: true,
+    oneTransfer: true,
+    twoTransfer: true,
+    threeTransfer: true
   }
 
   allCheckHandler(): void {
-    if (this.allCheckedFilters) {
+    if (this.allCheckedFilter) {
       for (let key in this.filterByTransfer) {
-        this.filterByTransfer[key] = true
+        if (this.filterByTransfer.hasOwnProperty(key)) {
+          this.filterByTransfer[key] = true
+        }
       }
     } else {
       for (let key in this.filterByTransfer) {
-        this.filterByTransfer[key] = false
+        if (this.filterByTransfer.hasOwnProperty(key)) {
+          this.filterByTransfer[key] = false
+        }
       }
     }
+    this.sendFilter()
   }
 
   checksHandler(): void {
-    this.allCheckedFilters = Object.values(this.filterByTransfer)
+    this.allCheckedFilter = Object.values(this.filterByTransfer)
       .every(item => item === true)
+    this.sendFilter()
+  }
+
+  sendFilter() {
+    this.filter.emit(this.filterByTransfer)
   }
 }

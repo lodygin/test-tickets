@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {SearchId, Ticket} from './shared/interfaces'
+import {Filter, SearchId, Ticket} from './shared/interfaces'
 import {TicketsService} from './shared/services/tickets.service'
 
 @Component({
@@ -7,10 +7,10 @@ import {TicketsService} from './shared/services/tickets.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  tickets: Ticket[] = []
-  searchId: SearchId
+  _tickets: Ticket[] = []
+  currTickets: Ticket[] = []
 
   isLoading = true
 
@@ -22,28 +22,44 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     const sub = this.ticketsService.getSearchId()
       .subscribe((res: SearchId) => {
+        this.ticketsService.searchId = res
+        this.setAllTickets()
         sub.unsubscribe()
-
-        this.searchId = res
-        this.getAndSetAllTickets()
       })
   }
 
-  getAndSetAllTickets() {
-    const sub = this.ticketsService.getTicketsBlock(this.searchId)
+  setAllTickets() {
+    const sub = this.ticketsService.getTicketsBlock(this.ticketsService.searchId)
       .subscribe(res => {
-        sub.unsubscribe()
-
-        res.tickets.forEach(ticket => {
-          this.tickets.push(ticket)
+        res.tickets.forEach((ticket: Ticket) => {
+          this._tickets.push(ticket)
         })
         if (!res.stop) {
-          this.getAndSetAllTickets()
+          this.setAllTickets()
         } else {
-          console.log(this.tickets)
+          sub.unsubscribe()
+          this.currTickets = [...this._tickets]
           this.isLoading = false
         }
       })
   }
 
+  setFilter(filter: Filter) {
+    let filteredTickets: Ticket[] = [...this._tickets]
+
+    const condition = (ticket: Ticket, length: number): boolean => {
+      return ticket.segments[0].stops.length === length || ticket.segments[1].stops.length === length
+    }
+
+    filteredTickets = filteredTickets.filter((ticket: Ticket) => {
+      return (
+        (filter.nonTransfer ? condition(ticket, 0) : null)
+        || (filter.oneTransfer ? condition(ticket, 1) : null)
+        || (filter.twoTransfer ? condition(ticket, 2) : null)
+        || (filter.threeTransfer ? condition(ticket, 3) : null)
+      )
+    })
+
+    this.currTickets = filteredTickets
+  }
 }
