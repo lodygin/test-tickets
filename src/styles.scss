@@ -30,3 +30,46 @@ div.toast {
     background-color: #2196f3;
   }
 }
+
+.scroll-to-top {
+  box-shadow: 0 2px 10px 0 rgba(#000, 0.37);
+  cursor: pointer;
+  position: fixed;
+  bottom: -80px;
+  right: 40px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(#2196f3, 0.9);
+  color: #fff;
+  transition: bottom 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 10px 0 rgba(#000, 0.40);
+    background-color: rgba(#2196f3, 1);
+
+    span {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.show-scrollTop {
+  bottom: 40px;
+  transition:
+          bottom 0.2s ease-in-out,
+          background-color 0.2s ease-in-out,
+          box-shadow 0.2s ease-in-out;
+
+  span {
+    transition: transform 0.2s ease-in-out;
+  }
+
+}
+
+.disabled-scrollTop {
+  pointer-events: none;
+}

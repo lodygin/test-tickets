@@ -4,7 +4,7 @@ import M from 'materialize-css/dist/js/materialize.js'
 export class MaterialService {
 
   static initTab(ref: ElementRef) {
-    M.Tabs.init(ref.nativeElement)
+    return M.Tabs.init(ref.nativeElement)
   }
 
   static toast(message: string) {

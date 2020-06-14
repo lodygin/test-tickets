@@ -25,7 +25,7 @@ export class DashboardComponent implements AfterViewInit {
   sortedAscending: Ticket[] = []
   sortedTheFastest: Ticket[] = []
 
-  stepIdx: number = 6
+  stepIdx: number = 4
   currIdx: number = this.stepIdx
 
   ngAfterViewInit(): void {

@@ -9,6 +9,7 @@ import {DashboardComponent} from './dashboard/dashboard.component'
 import {DashboardItemComponent} from './dashboard/dashboard-item/dashboard-item.component'
 import {HttpClientModule} from '@angular/common/http'
 import {LoaderComponent} from './shared/components/loader/loader.component'
+import {ScrollToTopComponent} from './shared/components/scroll-to-top/scroll-to-top.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {LoaderComponent} from './shared/components/loader/loader.component'
     FilterComponent,
     DashboardComponent,
     DashboardItemComponent,
-    LoaderComponent
+    LoaderComponent,
+    ScrollToTopComponent
   ],
   imports: [
     BrowserModule,

@@ -1,29 +1,31 @@
-<ul #tabs class="tabs">
-  <li class="tab col s6"><a (click)="currIdx = stepIdx" class="active" href="#dashboard1">Самый дешевый</a></li>
-  <li class="tab col s6"><a (click)="currIdx = stepIdx" href="#dashboard2">Самый быстрый</a></li>
-</ul>
-<div *ngIf="currTicketsLength; else empty">
-  <div class="row">
-    <div class="col s12">
-      <div id="dashboard1">
-        <app-dashboard-item *ngFor="let ticket of sortedAscending | slice:0:currIdx" [ticket]="ticket"></app-dashboard-item>
-      </div>
-      <div id="dashboard2">
-        <app-dashboard-item *ngFor="let ticket of sortedTheFastest | slice:0:currIdx" [ticket]="ticket" ></app-dashboard-item>
-      </div>
-    </div>
+<div [hidden]="!currTicketsLength">
+  <ul #tabs class="tabs">
+    <li class="tab col s6"><a (click)="currIdx = stepIdx" class="active" href="#dashboard1">Самый дешевый</a></li>
+    <li class="tab col s6"><a (click)="currIdx = stepIdx" href="#dashboard2">Самый быстрый</a></li>
+  </ul>
+  <div id="dashboard1">
+    <app-dashboard-item *ngFor="let ticket of sortedAscending | slice:0:currIdx" [ticket]="ticket"></app-dashboard-item>
   </div>
-  <div
-    infiniteScroll
-    [alwaysCallback]="true"
-    [infiniteScrollDistance]="1"
-    [infiniteScrollThrottle]="1000"
-    (scrolled)="onScroll()"
-  ></div>
-  <app-loader></app-loader>
+  <div id="dashboard2">
+    <app-dashboard-item *ngFor="let ticket of sortedTheFastest | slice:0:currIdx" [ticket]="ticket"></app-dashboard-item>
+  </div>
 </div>
+
+<div *ngIf="currTicketsLength; else empty">
+  <div *ngIf="currIdx < currTicketsLength">
+    <div
+      infiniteScroll
+      [alwaysCallback]="true"
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="1000"
+      (scrolled)="onScroll()"
+    ></div>
+    <app-loader></app-loader>
+  </div>
+</div>
+
 <ng-template #empty>
-  <div class="card">
+  <div class="card" style="margin-top: 0">
     <div class="card-content">
       <span class="card-title center-align">Упс, ничего нет :(</span>
     </div>
